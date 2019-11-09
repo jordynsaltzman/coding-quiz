@@ -9,6 +9,7 @@ Link to deployed site:
 https://jordynsaltzman.github.io/coding-quiz/.
 
 Screenshot of site:
+
 ![Screenshot of Site](assets/images/screenshot.JPG "Screenshot")
 
 ## Known Issues
