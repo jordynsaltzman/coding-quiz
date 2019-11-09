@@ -1,0 +1,34 @@
+body{
+    background: rgb(233, 233, 233);
+}
+
+#startQuiz{
+    float: center;
+    border-radius: 25px;
+}
+
+h1{
+    float: center;
+    margin: 50px 50px 10px 50px;
+}
+
+#viewScores{
+    border-radius: 25px;
+}
+
+#instructions{
+    margin: 0 30px 15px;
+}
+
+div{
+    border: 1px solid green;
+}
+
+li{
+    list-style-type: none;
+}
+
+.choices{
+    width: 80%;
+    margin: 15px;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Coding Quiz Challenge</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+
+    <body>
+        <a href="highscores.html" alt="Highscores Page"><span id="viewScores" type="button" class="btn btn-secondary btn-sm">View Highscores</span></a>
+
+        <div class="container text-center">
+
+            <h1>Coding Quiz Challenge</h1>
+            
+            <p id="instructions">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your time by 10 seconds!</p>
+            
+            <span id="startQuiz" type="button" class="btn btn-outline-success clear-fix">Start Quiz &#10154</span>
+            <br>
+            <br>
+            <div id="quizQuestionsDiv" style="display:none">
+                <h4 id="questionTitle"></h4>
+                <br>
+               
+                    <button id="choice1" class="btn btn-primary choices"></button>
+                    <br>
+                    <button id="choice2" class="btn btn-primary choices"></button>
+                    <br>
+                    <button id="choice3" class="btn btn-primary choices"></button>
+                    <br>
+                    <button id="choice4" class="btn btn-primary choices"></button>
+                
+            </div>
+            <h6 id="rightOrWrong"></h6>
+
+        </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous"></script>
+        <script type="text/javascript" src="assets/js/questions.js"></script>
+        <script type="text/javascript" src="assets/js/script.js"></script>
+        
+
+    </body>
+
+
+</html>
