@@ -8,6 +8,9 @@ After clicking "Start Quiz," the user is prompted to complete a 5 question quiz 
 Link to deployed site: 
 https://jordynsaltzman.github.io/coding-quiz/.
 
+Screenshot of site:
+![Screenshot of Site](assets/images/screenshot.jpg "Screenshot")
+
 ## Known Issues
 Once the user answers the final question, this error appears in the console: 
 
