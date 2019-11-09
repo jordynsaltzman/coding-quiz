@@ -9,7 +9,7 @@ Link to deployed site:
 https://jordynsaltzman.github.io/coding-quiz/.
 
 Screenshot of site:
-![Screenshot of Site](assets/images/screenshot.jpg "Screenshot")
+![Screenshot of Site](assets/images/screenshot.jpeg "Screenshot")
 
 ## Known Issues
 Once the user answers the final question, this error appears in the console: 
