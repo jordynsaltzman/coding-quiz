@@ -1,6 +1,12 @@
 //declaring variables
  var viewScores = document.getElementById("viewScores");
  var instructions = document.getElementById("instructions");
+ var timer = document.getElementById("timer");
+ var playerName = document.getElementById("playerName");
+ var submitScore = document.getElementById("submitScore");
+ var finalScoreIs = document.getElementById("finalScoreIs");
+ var mainDiv = document.getElementById("mainDiv");
+ var finishQuizDiv = document.getElementById("finishQuizDiv");
  var startQuiz = document.getElementById("startQuiz");
  var rightOrWrong = document.getElementById("rightOrWrong");
  var quizQuestionsDiv = document.getElementById("quizQuestionsDiv");
@@ -10,19 +16,34 @@
  var choice2 = document.getElementById("choice2")
  var choice3 = document.getElementById("choice3")
  var choice4 = document.getElementById("choice4")
+
  var questionNumber = 0;
  var quizQuestions = localStorage.getItem("questions");
+ var secondsLeft = 60;
+ 
 
  quizQuestions = JSON.parse(quizQuestions);
  console.log(quizQuestions);
  
 
-
-// hide elements function
+// hide start page elements function
 function hideStartPageEl (){
     viewScores.setAttribute("style", "display: none");
     instructions.setAttribute("style", "display: none");
     startQuiz.setAttribute("style", "display: none");
+}
+
+// hide quiz elements function
+function hideQuizPageEl (){
+    timer.setAttribute("style", "display: none");
+    mainDiv.setAttribute("style", "display: none");
+    viewScores.setAttribute("style", "display: block");
+}
+
+// show finish page elements function
+function showFinishPage(){
+    finishQuizDiv.setAttribute("style", "display: block");
+    finalScoreIs.textContent = "Your final score is "+ secondsLeft;
 }
 
 
@@ -34,7 +55,40 @@ function displayQuizQuestions(){
     choice2.textContent = questions[questionNumber].choices[1];
     choice3.textContent = questions[questionNumber].choices[2];
     choice4.textContent = questions[questionNumber].choices[3];
+
 }
+
+
+startQuiz.addEventListener("click", function(){
+    
+    alert("You have 60 seconds to answer 5 questions. Good luck!");
+    hideStartPageEl();
+    timer.setAttribute("style", "display: block");
+    displayQuizQuestions()
+    
+    secondsLeft = 60;
+    timer.textContent = "Time: " + secondsLeft; 
+    var timerInterval = setInterval(function() {
+      secondsLeft -=1;
+      timer.textContent = "Time: " + secondsLeft; 
+
+      if(secondsLeft === 0) {
+        clearInterval(timerInterval);
+        alert("Time's up.");
+        hideQuizPageEl();
+        showFinishPage();
+        
+      }
+
+      else if(questionNumber === questions.length){
+        clearInterval(timerInterval);
+        alert("Finito!");
+        hideQuizPageEl();
+        showFinishPage();
+      }
+    }, 1000);
+});
+
 
 
 //function for when user clicks one of the choice buttons
@@ -44,57 +98,36 @@ for (var i=0; i<choiceBtns.length; i++){
         console.log(questions[questionNumber].answer);
         if (event.target.textContent === questions[questionNumber].answer){
             rightOrWrong.textContent = "Correct!";
+            secondsLeft = secondsLeft+10;
         }
 
         else {
             rightOrWrong.textContent = "Incorrect.";
+            secondsLeft = secondsLeft-10;
         }
+
+        questionNumber++
+        displayQuizQuestions()
     })
 }
 
 
-$("#startQuiz").on("click", function(){
+//function for submit button
+submitScore.addEventListener("click", function(){
+
     
-    alert("You have 75 seconds to answer 5 questions. Good luck!");
-    hideStartPageEl();
-    // timeFunction();
-    displayQuizQuestions()
-      
-        
+    localStorage.setItem("player-name", playerName.value);
+    scoresList = localStorage.getItem("highscores");
+     if (scoresList === null){
+         scoresList = [];
+     }
+     else {
+    scoresList = JSON.parse(scoresList);
+     }
+    scoresList.push([playerName.value, secondsLeft]);
+    localStorage.setItem("highscores", JSON.stringify(scoresList));
+    window.location.href = "./highscores.html"
     
 
 });
 
-
-
-var secondsLeft = 75;
-    var timerInterval = setInterval(function() {
-      secondsLeft -=1;
-      $("#time").text(secondsLeft);
-
-      if(secondsLeft === 0) {
-        clearInterval(timerInterval);
-        $("#time").text("Time is up.");
-      }
-  
-    }, 1000);
-
-
-
-//If user selects right answer, score goes up by 1
-//and the next question in the array appears
-
-//Otherwise, user clicks wrong, time does down by 5 seconds
-//and the next question appears
-
-//When last question has been answered OR when time = 0 
-//display end screen with score
-//and allow user to enter initials in a form
-
-//when user clicks, "Submit", save score and initials to localStorage
-//and redirect to the highscore page
-
-//On highscore page
-//display high scores
-//"clear highscores" button should clear all data
-//"go back" button should redirect to the homepage
